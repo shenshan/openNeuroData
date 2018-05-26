@@ -12,7 +12,7 @@ Each experiment is identified by an `ExperimentID` - a small token that is uniqu
 ```
 st, sc, cq = ondLoad(eID, ['spikes.times', 'spikes.clusters', 'clusters.quality'])
 ```
-This command will load three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with a quality measure for each cluster. (In practice, the data will be cached on the user's local machine to avoid redownloading each time it is loaded.)
+This command will download three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with a quality measure for each cluster. (In practice, the data will be cached on the user's local machine to avoid redownloading each time it is loaded.)
 
 Many neural data signals are time series, and synchronizing these signals is often challenging. We provide a function to interpolate any required timeseries to an evenly or unevenly-sampled timescale of the users choice. For example the command:
 ```
