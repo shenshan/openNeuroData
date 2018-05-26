@@ -1,5 +1,5 @@
 # openNeuroData
-Neurophysiology badly needs data standardization. A scientist should be able to analyze data collected in any lab, using the same program without changing a single line of code, rather than spending untold hours figuring out new file formats.
+Neurophysiology badly needs data standardization. A scientist should be able to analyze data collected in any lab, using a single analysis program and without changing a single line of code, rather than spending untold hours figuring out new file formats.
 
 Substantial efforts have recently been put into developing neurodata file standards, but they have not been widely adopted. The same thing has occurred before in other scientific domains. Here we propose a simple model for data standardization in neurophysiology, based on lessons learned by the open microscopy environment ([OME](https://www.openmicroscopy.org/)). The OME group developed a file format, which is hardly ever used. But they also developed a set of loader functions, that allow scientists to load data from multiple native formats using the same code. These functions successfully standardized microscopy data.
 
