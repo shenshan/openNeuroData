@@ -22,7 +22,7 @@ would load head position and angle, converting both to a common 100 Hz sampling 
 
 Finally, a user needs to be able to search the data released by a provider for the IDs of experiments they want to analyze. To do so they would run a command like:
 ```
-eIDs, eInfo = ondSearch(lab='CortexLabUCL', subject='hercules', required_data=['spikes.times', 'spikes.clusters', 'clusters.quality', 'headTracking.xyPos', 'headTracking.angle'])
+eIDs, eInfo = ondSearch(lab='CortexLabUCL', subject='hercules', required_data=['spikes.times', 'spikes.clusters','headTracking.xyPos'])
 ```
 This would find the IDs for all experiments collected in the specified lab for the specified experimental subject, for which all of the specified data is present. There will be more metadata options to refine the search, and additional metadata on each matching experiment is returned in eInfo.
 
