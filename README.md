@@ -7,9 +7,9 @@ Here we propose a set of simple loader functions for neurophysiology data. Data 
 
 ## How it works
 
-Each experiment is identified by an `ExperimentID` - a small token that is unique to that particular experiment. An experiment can have  multiple Datasets, which contain the different types of data recorded in the experiment. If a user knows the ExperimentID, they can load some of these Datasets using a command like:
+Each experiment is identified by an `ExperimentID` - a small token that is unique to that particular experiment. An experiment can have  multiple Datasets, which contain the different types of data recorded in the experiment. If a user already has the ExperimentID in the variable `eID` , they can load data for the experiment using a command like:
 
 ```
-Datasets = ['spikes.times', 'spikes.clusters', 'clusters.quality']
-spikeTimes, spikeClusters, clusterQuality = ondLoad(ExperimentID, Datasets)
+st, sc, cq = ondLoad(ExperimentID, ['spikes.times', 'spikes.clusters', 'clusters.quality'])
 ```
+This command will load three datasets containing the times and cluster assignments 
