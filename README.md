@@ -8,12 +8,14 @@ Here we propose a set of three simple loader functions for neurophysiology data.
 ## How it works
 
 Each experiment is identified by an `ExperimentID` - a small token that is unique to that particular experiment. If a user already has the ExperimentID in the variable `eID` , they can load data for the experiment using a command like:
+
 ```
 st, sc, cq = ondLoad(eID, ['spikes.times', 'spikes.clusters', 'clusters.quality'])
 ```
 This command will load three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with a quality measure for each cluster. (In practice, the data will be cached on the user's local machine to avoid redownloading each time it is loaded.)
 
 Many neural data signals are time series, and synchronizing these signals is often challenging. We provide a function to interpolate any required timeseries to an evenly or unevenly-sampled timescale of the users choice. For example the command:
+
 ```hxy, hth, t = ondLoadTS(eID, ['headTracking.xyPos', 'headTracking.angle'], sample_rate=100)```
 would load head position and angle, converting both to a common 100 Hz sampling rate. The sample times are returned as `t`.
 
