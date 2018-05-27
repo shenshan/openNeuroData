@@ -25,9 +25,9 @@ If a user already knows the eID of an experiment they are interested in, they ca
 ```
 st, sc, cq = oneLoad(eID, ['spikes.times', 'spikes.clusters', 'clusters.quality'])
 ```
-This command will download three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with a quality measure for each cluster. (In practice, the data will be cached on the user's local machine to avoid redownloading from the internet.)
+This command will download three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with a quality measure for each cluster. (In practice, the data will be cached on the user's local machine so it can be loaded repeatedly with only one download.)
 
-Many neural data signals are time series, and synchronizing these signals is often challenging. We provide a function to interpolate any required timeseries to an evenly or unevenly-sampled timescale of the user's choice. For example the command:
+Many neural data signals are time series, and synchronizing these signals is often challenging. ONE would provide a function to interpolate any required timeseries to an evenly or unevenly-sampled timescale of the user's choice. For example the command:
 ```
 hxy, hth, t = oneLoadTS(eID, ['headTracking.xyPos', 'lfp.raw'], sample_rate=1000)
 ```
