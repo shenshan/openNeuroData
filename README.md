@@ -7,7 +7,11 @@ Here we propose a set of three simple loader functions for neurophysiology data.
 
 ## How it works
 
-Each experiment is identified by an experiment ID - a small token that uniquely identifies a particular experiment. If a user already has the ID in the variable `eID` , they can load data for the experiment using a command like:
+By a *data provider* we mean an organization that hosts a large body of experimental data on an internet server (for example, the [international brain lab](https://www.internationalbrainlab.com/)). The open neurophysiology environment (ONE) provides a way for scientists to analyze data from multiple data providers in a seamless manner. The ONE protocol can also be used to access data hosted on the user's own computer (rather than a server) but we do not describe this here.
+
+The data released by each provider consists of multiple *experiments*, and for each experiment there were multiple types of recording applied simultaneously. Every experiment is identified by an experiment ID - a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the data type of this ID, however we would recommend using a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). 
+
+If a user already has the ID in the variable `eID` , they can load data for the experiment using a command like:
 
 ```
 st, sc, cq = oneLoad(eID, ['spikes.times', 'spikes.clusters', 'clusters.quality'])
