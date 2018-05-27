@@ -27,9 +27,9 @@ This command will download three datasets containing the times and cluster assig
 
 Many neural data signals are time series, and synchronizing these signals is often challenging. We provide a function to interpolate any required timeseries to an evenly or unevenly-sampled timescale of the user's choice. For example the command:
 ```
-hxy, hth, t = oneLoadTS(eID, ['headTracking.xyPos', 'headTracking.angle'], sample_rate=100)
+hxy, hth, t = oneLoadTS(eID, ['headTracking.xyPos', 'lfp.raw'], sample_rate=1000)
 ```
-would load head position and angle, converting both to a common 100 Hz sampling rate. The sample times are returned as `t`.
+would interpolate head position and lfp to a common 1000 Hz sampling rate. The sample times are returned as `t`.
 
 ### Searching for experiments
 Finally, a user needs to be able to search the data released by a provider, to obtain the eIDs of experiments they want to analyze. To do so they would run a command like:
