@@ -36,7 +36,7 @@ Finally, a user needs to be able to search the data released by a provider, to o
 ```
 eIDs, eInfo = oneSearch(lab='CortexLabUCL', subject='hercules', required_data=['spikes.times', 'spikes.clusters','headTracking.xyPos'])
 ```
-This would find the eIDs for all experiments collected in the specified lab for the specified experimental subject, for which all of the required data is present. There will be more metadata options to refine the search (e.g. dates, genotypes, experimenter), and additional metadata on each matching experiment is returned in `eInfo`.
+This would find the eIDs for all experiments collected in the specified lab for the specified experimental subject, for which all of the required data is present. There will be more metadata options to refine the search (e.g. dates, genotypes, experimenter), and additional metadata on each matching experiment is returned in `eInfo`. However, the existence of dataset types is normally enough to find the data you want: if you want to analyze electrophysiology in a particular behavior task, datasets describing the ephys recordings and parameters of that task will indicate which experiments you want.
 
 ## Standardization
 
