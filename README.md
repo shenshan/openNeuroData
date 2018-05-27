@@ -17,7 +17,7 @@ import one_ibl
 ```
 Because it is up to data providers to maintain the loader functions, all a user needs to do to work with data from a specific provider is import their loader module. To analyze Allen data, they could instead type `import one_allen`. After that, all other analysis code will be the same, regardless of which provider's data they are analyzing.
 
-Every experiment a data provider releases is identified by an *experiment ID* (eID) -- a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the format of their eIDs; however we would recommend using a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). 
+Every experiment a data provider releases is identified by an *experiment ID* (eID) -- a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the format of their eIDs; however we would recommend using [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)s. 
 
 ### Loading data
 
