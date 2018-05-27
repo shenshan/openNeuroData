@@ -17,7 +17,7 @@ Because it is up to data providers to maintain the loader functions, all a user 
 
 Every experiment a data provider releases is identified by an *experiment ID* (eID) -- a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the format of their eIDs; however we would recommend using a [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier). 
 
-### Downloading data
+### Loading data
 
 If a user already knows the eID of an experiment they are interested in, they can load data for the experiment using a command like:
 ```
