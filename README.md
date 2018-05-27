@@ -1,7 +1,9 @@
 # Open Neurophysiology Environment
 Neurophysiology badly needs data standardization. A scientist should be able to analyze data collected in any lab, using a single analysis program and without changing a single line of code, rather than spending untold hours figuring out new file formats.
 
-Substantial efforts have recently been put into developing neurodata file standards, but they have not been widely adopted. The same thing has happened before in other scientific fields. Here we propose a simple model for data standardization in neurophysiology, based on lessons learned by the open microscopy environment ([OME](https://www.openmicroscopy.org/)). The OME group developed a file format, which is hardly ever used. But they also developed a set of loader functions, which allow scientists to analyze data in multiple native formats using a single program. These loader functions successfully standardized microscopy data.
+Substantial efforts have recently been put into developing neurodata file standards, with the most successful being the [Neurodata Without Borders](https://www.nwb.org/) format. Nevertheless, despite their careful design, these standards have seen less adoption than originally envisioned. 
+
+The same thing has happened before in other scientific fields. Here we propose a simple model for data standardization in neurophysiology, based on lessons learned by the open microscopy environment ([OME](https://www.openmicroscopy.org/)). The OME group developed a file format, which is hardly ever used. But they also developed a set of loader functions, which allow scientists to analyze data in multiple native formats using a single program. These loader functions successfully standardized microscopy data.
 
 Here we propose a set of three simple loader functions for neurophysiology data. To adopt the standard, data providers can use any format they like - all they need to do is implement these three functions to fetch the data from their server and load it into Python or MATLAB. Users can then analyze this data with the same exact code as data from any other provider.
 
