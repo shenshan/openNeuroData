@@ -7,7 +7,7 @@ Here we propose a set of three simple loader functions for neurophysiology data.
 
 ## How it works
 
-By a *data provider* we mean an organization that hosts a set of neurophysiology data on an internet server (for example, the [international brain lab](https://www.internationalbrainlab.com/)). The open neurophysiology environment (ONE) provides a way for scientists to analyze data from multiple data providers using the same analysis code. There is no need for the user to explicitly download data files or understand their format - this is all handled seamlessly by the ONE framework. The ONE protocol can also be used to access a scientist's own experiments hosted on their personal computer, but we do not describe this use-case here.
+By a *data provider* we mean an organization that hosts a set of neurophysiology data on an internet server (for example, the [International Brain Lab](https://www.internationalbrainlab.com/)). The Open Neurophysiology Environment (ONE) provides a way for scientists to analyze data from multiple data providers using the same analysis code. There is no need for the scientist to explicitly download data files or understand their format - this is all handled seamlessly by the ONE framework. The ONE protocol can also be used to access a scientist's own experiments store on their personal computer, but we do not describe this use-case here.
 
 When a user wants to analyze data released by a provider, they first import that provider's loader functions. In python, to analyze IBL data, they would type
 ```
