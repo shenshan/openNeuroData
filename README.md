@@ -19,7 +19,7 @@ import one_ibl as one
 ```
 Because it is up to data providers to maintain the loader functions, all a user needs to do to work with data from a specific provider is import their loader module. To analyze Allen data, they could instead type `import one_allen`. After that, all other analysis code will be the same, regardless of which provider's data they are analyzing.
 
-Every experiment a data provider releases is identified by an *experiment ID* (eID) -- a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the format of their eIDs; however we would recommend using [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)s. 
+Every experiment a data provider releases is identified by an *experiment ID* (eID) -- a small token that uniquely identifies a particular experiment. It is up to the data provider to specify the format of their eIDs. 
 
 ### Loading data
 
@@ -47,3 +47,9 @@ This would find the eIDs for all experiments collected in the specified lab for 
 The key to ONE's standardization is the concept of a "standard dataset type". When a user requests one of these (such as `'spikes.times'`), they are guaranteed that each data provider will return them the same information, organized in the same way - in this case, the times of all extracellularly recorded spikes, measured in seconds relative to experiment start, and returned as a 1-dimensional column vector. It is also guaranteed that any dataset types of the form `*.times` will be measured in seconds relative to experiment start, and that all dataset types differing only in their last word (e.g. `spikes.times` and `spikes.clusters`) will have the same number of rows, describing multiple attributes of the same objects.
 
 Not all data can be standardized, since each project will do unique experiments. Data providers can thereform add their own project-specific dataset types, in their own namespace. For example the dataset types `ibl.trials.stimulusContrast` and `ibl.trials.rewardProbabilty` could contain information specific to trials in the IBL task. No other data providers would be required to load these dataset types, but they would all be required to load the standard types. A conservative list of standard types and experiment metadata search terms would be maintained centrally.
+
+# Ease of use
+
+Data standards are only adopted when they are easy to use, for both producers and consumers of data. For consumers, the three ONE functions will be simple to learn, and will cover most common use cases.
+
+For data producers, a key advantage of this framework is its low barrier to entry. To share data with ONE, producers do not need to run and maintain a backend server, just to upload their data to a website. We will provide a reference implementation of the ONE loader functions that searches, downloads and caches files from a web server. This will allow producers who do not have in-house computational staff two simple ways to achieve ONE compatibility. First, they can upload data to a website using a standard file-naming convention [link](https://github.com/cortex-lab/ALF); second they can use their existing file-naming conventions, clone and modify our reference implementation to their particular files, and release to the community.
