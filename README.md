@@ -48,7 +48,7 @@ The key to ONE's standardization is the concept of a "standard dataset type". Wh
 
 Not all data can be standardized, since each project will do unique experiments. Data providers can thereform add their own project-specific dataset types, in their own namespace. For example the dataset types `ibl.trials.stimulusContrast` and `ibl.trials.rewardProbabilty` could contain information specific to trials in the IBL task. No other data providers would be required to load these dataset types, but they would all be required to load the standard types. A conservative list of standard types and experiment metadata search terms would be maintained centrally.
 
-# Ease of use
+## Ease of use
 
 Data standards are only adopted when they are easy to use, for both producers and consumers of data. For consumers, the three ONE functions will be simple to learn, and will cover most common use cases.
 
