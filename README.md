@@ -25,7 +25,7 @@ Every experiment a data provider releases is identified by an *experiment ID* (e
 
 If a user already knows the eID of an experiment they are interested in, they can load data for the experiment using a command like:
 ```
-st, sc, cq = one.load(eID, ['spikes.times', 'spikes.clusters', 'clusters.brain_location'])
+st, sc, cbl = one.load(eID, ['spikes.times', 'spikes.clusters', 'clusters.brain_location'])
 ```
 This command will download three datasets containing the times and cluster assignments of all spikes recorded in that experiment, together with an estimate of the brain location of each cluster. (In practice, the data will be cached on the user's local machine so it can be loaded repeatedly with only one download.)
 
