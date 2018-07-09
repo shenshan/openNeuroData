@@ -3,14 +3,11 @@ from getpass import getpass
 import urllib.request
 import timeit
 
-BASEURL = "https://alyx.cortexlab.net"
-BASEURL = "https://alyx-dev.cortexlab.net"
 
-ALYXLOGIN = 'olivier'
-ALYXPWD = getpass()
+ALYX_PWD = getpass()
 
 token = requests.post(BASEURL + '/auth-token',
-                      data=dict(username=ALYXLOGIN, password=ALYXPWD)).json()
+                      data=dict(username=ALYX_LOGIN, password=ALYX_PWD)).json()
 
 HEADERS = {
     'Authorization': 'Token {}'.format(list(token.values())[0]),

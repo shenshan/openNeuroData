@@ -2,8 +2,9 @@ import urllib.request
 import os
 from pathlib import Path
 
-def http_download_file_list_flatiron(links_to_file_list, **kwargs):
-    ''' Get a list of files from the flat Iron
+
+def http_download_file_list(links_to_file_list, **kwargs):
+    ''' Get a list of files from the flat Iron from a list of links
 
         Args (required):
             list_of_links_to_file (list): list of (str) http link to the file
@@ -18,11 +19,11 @@ def http_download_file_list_flatiron(links_to_file_list, **kwargs):
     '''
     file_names_list = []
     for link_str in links_to_file_list:
-        file_names_list.append(http_download_file_flatiron(link_str, **kwargs))
+        file_names_list.append(http_download_file(link_str, **kwargs))
     return file_names_list
 
 
-def http_download_file_flatiron(full_link_to_file, *,
+def http_download_file(full_link_to_file, *,
                            username = '', password = '', cache_dir = '', verbose = True):
     ''' Get a single file from the flat Iron knowing the link
 
@@ -38,6 +39,7 @@ def http_download_file_flatiron(full_link_to_file, *,
             filename (str): the local filename downloaded
     '''
 
+    if len(full_link_to_file) == 0: return ''
 
     # default cache directory is the home dir
     if len(cache_dir) == 0:
@@ -81,3 +83,19 @@ def http_download_file_flatiron(full_link_to_file, *,
     f.close()
 
     return file_name
+
+
+def file_record_to_url(file_records, urls=[]):
+    for fr in file_records:
+        if fr['data_url'] is not None:
+            urls.append(fr['data_url'])
+    return urls
+
+
+def dataset_record_to_url(dataset_record):
+    urls = []
+    if type(dataset_record) is dict: dataset_record = [dataset_record]
+    for ds in dataset_record:
+        urls = file_record_to_url(ds['file_records'], urls)
+    return urls
+

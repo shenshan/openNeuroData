@@ -1,0 +1,6 @@
+click
+globus-cli
+globus-sdk
+numpy
+requests
+terminaltables
