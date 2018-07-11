@@ -2,12 +2,12 @@ import requests
 from getpass import getpass
 import urllib.request
 import timeit
-
+import one_ibl.params as par
 
 ALYX_PWD = getpass()
 
-token = requests.post(BASEURL + '/auth-token',
-                      data=dict(username=ALYX_LOGIN, password=ALYX_PWD)).json()
+token = requests.post(par.BASEURL + '/auth-token',
+                      data=dict(username=par.ALYX_LOGIN, password=ALYX_PWD)).json()
 
 HEADERS = {
     'Authorization': 'Token {}'.format(list(token.values())[0]),

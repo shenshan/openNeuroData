@@ -10,7 +10,7 @@ import shutil
 import click
 import globus_sdk
 import requests as rq
-from terminaltables import  AsciiTable
+from terminaltables import AsciiTable
 import one_ibl.params as par
 
 logging.basicConfig(level=logging.WARN)
@@ -254,8 +254,8 @@ def transfers_required(dataset=None):
             continue
         # If possible, choose a file from a non-personal server.
         existing_file = next(
-            (f for f in existing_files if _get_data_repository(c, f)['globus_is_personal'] is False),
-            None)
+            (f for f in existing_files
+             if _get_data_repository(c, f)['globus_is_personal'] is False), None)
         if existing_file is None:
             # Otherwise, fallback on a personal server. But the destination should not
             # be a personal server as well.
@@ -377,7 +377,7 @@ def start_globus_transfer(source_file_id, destination_file_id, dry_run=False):
 
     task_id = response.get('task_id', None)
     message = response.get('message', None)
-    code = response.get('code', None)
+    # code = response.get('code', None)
 
     logger.info("%s (task UUID: %s)", message, task_id)
     return response

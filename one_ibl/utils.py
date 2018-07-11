@@ -24,7 +24,7 @@ def http_download_file_list(links_to_file_list, **kwargs):
 
 
 def http_download_file(full_link_to_file, *,
-                           username = '', password = '', cache_dir = '', verbose = True):
+                       username='', password='', cache_dir='', verbose=True):
     ''' Get a single file from the flat Iron knowing the link
 
         Args (required):
@@ -39,14 +39,15 @@ def http_download_file(full_link_to_file, *,
             filename (str): the local filename downloaded
     '''
 
-    if len(full_link_to_file) == 0: return ''
+    if len(full_link_to_file) == 0:
+        return ''
 
     # default cache directory is the home dir
     if len(cache_dir) == 0:
-        cache_dir = str(Path.home()) +  os.sep + "Downloads"
+        cache_dir = str(Path.home()) + os.sep + "Downloads"
 
     # This is the local file name
-    file_name = cache_dir + os.sep +   os.path.basename(full_link_to_file)
+    file_name = cache_dir + os.sep + os.path.basename(full_link_to_file)
 
     # This should be the base url you wanted to access.
     baseurl = os.path.split(full_link_to_file)[0]
@@ -67,7 +68,8 @@ def http_download_file(full_link_to_file, *,
     u = urllib.request.urlopen(full_link_to_file)
     file_size = int(u.getheader('Content-length'))
 
-    if verbose: print("Downloading: %s Bytes: %s" % (file_name, file_size))
+    if verbose:
+        print("Downloading: %s Bytes: %s" % (file_name, file_size))
     file_size_dl = 0
     block_sz = 8192*64
     f = open(file_name, 'wb')
@@ -79,7 +81,8 @@ def http_download_file(full_link_to_file, *,
         f.write(buffer)
         status = r"%10d  [%3.2f%%]" % (file_size_dl, file_size_dl * 100. / file_size)
         status = status + chr(8)*(len(status)+1)
-        if verbose: print(status)
+        if verbose:
+            print(status)
     f.close()
 
     return file_name
@@ -94,8 +97,8 @@ def file_record_to_url(file_records, urls=[]):
 
 def dataset_record_to_url(dataset_record):
     urls = []
-    if type(dataset_record) is dict: dataset_record = [dataset_record]
+    if type(dataset_record) is dict:
+        dataset_record = [dataset_record]
     for ds in dataset_record:
         urls = file_record_to_url(ds['file_records'], urls)
     return urls
-
