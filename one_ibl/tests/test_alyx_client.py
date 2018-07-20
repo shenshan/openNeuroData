@@ -1,5 +1,5 @@
 import unittest
-from one_ibl.alyx_client import AlyxClient
+from one_ibl.utils import AlyxClient
 import one_ibl.utils
 import one_ibl.params as par
 import os
@@ -10,7 +10,7 @@ class TestDownloadHTTP(unittest.TestCase):
     def setUp(self):
         # Init connection to the database
         self.ac = AlyxClient()
-        self.ac._auth(username=par.ALYX_LOGIN, password=par.ALYX_PWD)
+        self.ac.authenticate(username=par.ALYX_LOGIN, password=par.ALYX_PWD)
 
     def test_download_datasets(self):
         # Test 1: empty dir, dict mode

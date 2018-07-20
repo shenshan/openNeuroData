@@ -1,6 +1,4 @@
-click
-globus-cli
-globus-sdk
 numpy
 requests
+json
 terminaltables
