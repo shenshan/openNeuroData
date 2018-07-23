@@ -7,40 +7,41 @@ import json
 
 
 def http_download_file_list(links_to_file_list, **kwargs):
-    """ Get a list of files from the flat Iron from a list of links
-   Args (required):
-       list_of_links_to_file (list): list of (str) http link to the file
-   Optional:
-       username = '' authentication for password protected
-       password = '' authentication for password protected
-       cache_dir = homeDir  directory in which files are cached
-       verbose = True  displays status of the Download for large files
+    """
+    Downloads a list of files from the flat Iron from a list of links.
+    Same options behaviour as http_download_file
 
-   Returns
-       filenames (list): the local filename downloaded
+    :param links_to_file_list: list of http links to files.
+    :type links_to_file_list: list
+
+    :return: (list) a list of the local full path of the downloaded files.
     """
     file_names_list = []
     for link_str in links_to_file_list:
-       file_names_list.append(http_download_file(link_str, **kwargs))
+        file_names_list.append(http_download_file(link_str, **kwargs))
     return file_names_list
 
 
 def http_download_file(full_link_to_file, *, clobber=False,
                        username='', password='', cache_dir='', verbose=True):
-    """ Get a single file from the flat Iron knowing the link
-        Args (required):
-            full_link_to_file (str): http link to the file
-        Optional:
-            clobber = False. If set to False, will not overwrite an existing file with the same name
-            username = '' authentication for password protected file server
-            password = '' authentication for password protected file server
-            cache_dir = homeDir  directory in which files are cached
-            verbose = True  displays status of the Download for large files
-
-        Returns
-            filename (str): the local filename downloaded
     """
-    if not(full_link_to_file):
+    :param full_link_to_file: http link to the file.
+    :type full_link_to_file: str
+    :param clobber: [False] If True, force overwrite the existing file.
+    :type clobber: bool
+    :param username: [''] authentication for password protected file server.
+    :type username: str
+    :param password: [''] authentication for password protected file server.
+    :type password: str
+    :param cache_dir: [''] directory in which files are cached; defaults to user's
+     Download directory.
+    :type cache_dir: str
+    :param verbose: [True] displays a message for each download.
+    :type verbose: bool
+
+    :return: (str) a list of the local full path of the downloaded files.
+    """
+    if not full_link_to_file:
         return ''
 
     # default cache directory is the home dir
@@ -95,10 +96,15 @@ def http_download_file(full_link_to_file, *, clobber=False,
 
 def file_record_to_url(file_records, urls=[]):
     """
-    Translate a Json dictionary to an usable http url for downlading files
-    :param file_records: dictionary containing a 'data_url' field
-    :param urls: a list of strings containing previous data_urls
-    :return: urls: a list of strings representing full data urls
+    Translate a Json dictionary to an usable http url for downlading files.
+
+    :param file_records: json containing a 'data_url' field
+    :type file_records: dict
+    :param urls: a list of strings containing previous data_urls on which new urls
+     will be appended
+    :type urls: list
+
+    :return: urls: (list) a list of strings representing full data urls
     """
     for fr in file_records:
         if fr['data_url'] is not None:
@@ -108,9 +114,12 @@ def file_record_to_url(file_records, urls=[]):
 
 def dataset_record_to_url(dataset_record):
     """
-    Extracts a list of files urls from a list of dataset queries
-    :param dataset_record: list of Json dictionary from a rest request
-    :return:a list of strings representing files urls corresponding to the datasets records
+    Extracts a list of files urls from a list of dataset queries.
+
+    :param dataset_record: dataset Json from a rest request.
+    :type dataset_record: list
+
+    :return: (list) a list of strings representing files urls corresponding to the datasets records
     """
     urls = []
     if type(dataset_record) is dict:
@@ -121,13 +130,26 @@ def dataset_record_to_url(dataset_record):
 
 
 class AlyxClient:
+    """
+    Class that implements simple GET/POST wrappers for the Alyx REST API
+    http://alyx.readthedocs.io/en/latest/api.html
+    """
     _token = ''
     _headers = ''
 
-    def __init__(self):
-        self.authenticate()
+    def __init__(self, **kwargs):
+        self.authenticate(**kwargs)
 
-    def authenticate(self, username=par.ALYX_LOGIN, password=par.ALYX_PWD):
+    def authenticate(self, username=[], password=[]):
+        """
+        Gets a security token from the Alyx REST API to create requests headers.
+        Credentials are in the params_secret_template.py file
+
+        :param username: Alyx database user
+        :type username: str
+        :param password: Alyx database password
+        :type password: str
+        """
         self._token = requests.post(par.BASE_URL + '/auth-token',
                                     data=dict(username=username, password=password)).json()
         self._headers = {
@@ -137,6 +159,15 @@ class AlyxClient:
             }
 
     def get(self, rest_query):
+        """
+        Sends a GET request to the Alyx server. Will raise an exception on any status_code
+         other than 200, 201.
+
+        :param rest_query: example: '/sessions?user=Hamish'.
+        :type rest_query: str
+
+        :return: (dict/list) json interpreted dictionary from response
+        """
         rest_query = rest_query.replace(par.BASE_URL, '')
         r = requests.get(par.BASE_URL + rest_query, stream=True, headers=self._headers, data=None)
         if r and r.status_code in (200, 201):
@@ -145,6 +176,14 @@ class AlyxClient:
             raise Exception(r)
 
     def post(self, rest_query):
+        """
+        Sends a POST request to the Alyx server.
+
+        :param: rest_query (string).
+        :type rest_query: str
+
+        :return: response object
+        """
         rest_query = rest_query.replace(par.BASE_URL, '')
         r = requests.post(par.BASE_URL + rest_query, stream=True, headers=self._headers, data=None)
         return r

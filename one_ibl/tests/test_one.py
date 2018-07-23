@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 
 
-class TestDownloadHTTP(unittest.TestCase):
+class TestLoad(unittest.TestCase):
 
     def setUp(self):
         # Init connection to the database
@@ -51,6 +51,19 @@ class TestDownloadHTTP(unittest.TestCase):
         eid = 'http://localhost:8000/sessions/698361f6-b7d0-447d-a25d-42afdef7a0da'
         a = myone.load(eid, dataset_types=dataset_types, dict_output=True)
         self.assertTrue(len(a['id']) == 5)
+
+    def test_list(self):
+        # Test when the dataset type requested is not unique
+        myone = self.One
+        # test with a single table, list format
+        [l,f] = myone.list(table=['users'])
+        self.assertTrue(isinstance(l[0], str) and isinstance(l[0], str))
+        # test with a single table, string format
+        [l,f] = myone.list(table='users')
+        self.assertTrue(isinstance(l[0], str) and isinstance(l[0], str))
+        # test with a single table, string format
+        [l,f] = myone.list(table=['users','dataset_type'])
+        self.assertTrue(isinstance(l[0], list) and isinstance(l[0], list))
 
 
 if __name__ == '__main__':
