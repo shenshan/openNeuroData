@@ -10,5 +10,6 @@ setup(
     description='Open neuro data',
     author='ibl',
     author_email='',
-    packages=find_packages(exclude=[]),
+    py_modules = ['one'],
+    packages = ['one_ibl']
 )
