@@ -1,4 +1,5 @@
 scratch*
+one_config.json
 params_secret.py
 one_ibl/docs/_*
 one_ibl/__pycache__/*

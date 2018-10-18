@@ -1,4 +1,14 @@
-import one_ibl.params_secret as sec
+try:
+    import one_ibl.params_secret as sec
+except:
+    import json
+    class DictWrapper(dict):
+        def __getattr__(self, attr):
+            return self[attr]
+
+    with open('one_config.json', 'r') as f:
+        sec = DictWrapper(json.load(f))
+
 # import one_ibl.params as par
 
 # BASE_URL = "https://alyx.cortexlab.net"
