@@ -3,3 +3,4 @@ params_secret.py
 one_ibl/docs/_*
 one_ibl/__pycache__/*
 __pycache__/*
+one.egg-info
