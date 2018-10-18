@@ -156,7 +156,6 @@ The returned eInfo is a list of information of session and related dataset in ea
  'start_time': '2018-09-06T15:43:25',
  'end_time': '2018-09-06T16:30:28',
  'url': 'https://dev.alyx.internationalbrainlab.org/sessions/295e05fb-1e34-40b9-857a-6459b37e1e63'}
-
 ```
 
 4. Fetch a particular dataset with its name and the eID of the corresponding session. For example,
@@ -164,6 +163,22 @@ The returned eInfo is a list of information of session and related dataset in ea
 
 ```
 go_cue_times, choices = ONE().load(eIDs[1], dataset_types = ['_ibl_trials.goCue_times', '_ibl_trials.choice'])
-
 ```
 The returned go_cue_times and choices have the same length.
+
+
+## Setup dependency on ONE in ibl docker
+
+1. Put both packages ibl-pipeline and openNeuroData into the same directory, and switch to that directory in the terminal.
+
+2. Build the Dockerfile in this directory using -f:
+
+```
+docker build -t ibl-pipeline_datajoint:latest -f ibl-pipeline/Dockerfile .
+```
+
+3. Run docker-compose inside the ibl-pipeline directory:
+
+```
+docker-compose up -d
+```
