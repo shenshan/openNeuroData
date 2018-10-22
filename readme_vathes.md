@@ -1,25 +1,5 @@
 # How to search session and load data with ONE
 
-## Credentials
-
-1. In the file params_secret.py, fill in log in password for alyx (ALYX_PWD) and flatiron (HTTP_DATA_SERVER_PWD).
-
-2. Change the file params.py as follows:
-
-```
-import one_ibl.params_secret as sec
-
-BASE_URL = "https://dev.alyx.internationalbrainlab.org/"
-
-ALYX_LOGIN = 'vathes'
-ALYX_PWD = sec.ALYX_PWD
-
-HTTP_DATA_SERVER = r'http://ibl.flatironinstitute.org/cortexlab'
-HTTP_DATA_SERVER_LOGIN = 'iblmember'
-HTTP_DATA_SERVER_PWD = sec.HTTP_DATA_SERVER_PWD  # password for data server
-
-CACHE_DIR = '' # if empty it will download in the user download directory
-```
 
 ## Search eIDs for spectific subjects
 
@@ -165,20 +145,3 @@ The returned eInfo is a list of information of session and related dataset in ea
 go_cue_times, choices = ONE().load(eIDs[1], dataset_types = ['_ibl_trials.goCue_times', '_ibl_trials.choice'])
 ```
 The returned go_cue_times and choices have the same length.
-
-
-## Setup dependency on ONE in ibl docker
-
-1. Put both packages ibl-pipeline and openNeuroData into the same directory, and switch to that directory in the terminal.
-
-2. Build the Dockerfile in this directory using -f:
-
-```
-docker build -t ibl-pipeline_datajoint:latest -f ibl-pipeline/Dockerfile .
-```
-
-3. Run docker-compose inside the ibl-pipeline directory:
-
-```
-docker-compose up -d
-```
