@@ -66,6 +66,7 @@ class ONE(OneAbstract):
                     out['url'].append(urlstr)
                     out['id'].append(ses['data_dataset_session_related'][i]['id'])
                     out['dataset_type'].append(dt)
+                    print(urlstr)
                     out['local_path'].append(one_ibl.utils.http_download_file(
                         urlstr, username=par.HTTP_DATA_SERVER_LOGIN,
                         password=par.HTTP_DATA_SERVER_PWD))
